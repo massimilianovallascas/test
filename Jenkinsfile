@@ -32,11 +32,11 @@ pipeline {
     }
 
     stages {
-        stage("Get inof"){
+        stage("Get info"){
             steps {
                 echo "getting info"
+                runDynamic()
             }
-            runDynamic()
         }
     }
     
