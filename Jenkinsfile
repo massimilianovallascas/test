@@ -26,7 +26,7 @@ def readOrderFromFile() {
 
 void runDynamic() {
     def terraformFolders = readOrderFromFile()
-    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + stages.size() + " steps"
+    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + terraformFolders.size() + " steps"
     terraformFolders.each { terraformFolder -> 
         stageName = "Running Terraform module for $terraformFolder"
         script {
