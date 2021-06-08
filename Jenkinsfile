@@ -1,16 +1,16 @@
-pipeline{
+pipeline {
     agent any
     
     parameters {
         string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
     }
 
-    stages{
+    stages {
         stage("Get inof"){
-            steps{
+            steps {
                 echo "getting info"
             }
-            runDynamic
+            
         }
     }
     
