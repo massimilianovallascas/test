@@ -17,14 +17,14 @@ pipeline {
 }
 
 def readOrderFromFile() {
-
-
+    def data = []
     if (fileExists(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)) {
-        def data = readFile(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
+        data = readFile(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
         // def datas = readYaml(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
         
-        return data
     }
+    
+    return data
 }
 
 def runDynamic() {
