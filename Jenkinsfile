@@ -9,11 +9,11 @@ pipeline {
         stage("Get info"){
             steps {
                 echo "getting info"
-                
+                runDynamic()
             }
         }
     }
-    runDynamic()
+    
     
 }
 
