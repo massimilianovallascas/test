@@ -1,21 +1,3 @@
-pipeline {
-    agent any
-    
-    parameters {
-        string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
-    }
-
-    stages {
-        stage("Get inof"){
-            steps {
-                echo "getting info"
-            }
-            runDynamic()
-        }
-    }
-    
-}
-
 def readOrderFromFile() {
     def data = readFile(file: param.TERRAFORM_DEPLOYMENT_ORDER_FILE)
     return data
@@ -41,3 +23,22 @@ def runDynamic(args) {
     //     ]
     // }
 }
+
+pipeline {
+    agent any
+    
+    parameters {
+        string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
+    }
+
+    stages {
+        stage("Get inof"){
+            steps {
+                echo "getting info"
+            }
+            runDynamic()
+        }
+    }
+    
+}
+
