@@ -1,3 +1,12 @@
+// @Library('payme-terraform')_
+
+library identifier: 'payme-terraform@master',
+    retriever: modernSCM([
+      $class: 'GitSCMSource',
+      remote: 'https://github.com/massimilianovallascas/test.git'
+])
+
+
 pipeline {
     agent any
     
@@ -15,24 +24,3 @@ pipeline {
     } 
 }
 
-def readOrderFromFile() {
-    def data = []
-    if (fileExists(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)) {
-        data = readFile(params.TERRAFORM_DEPLOYMENT_ORDER_FILE).readLines()
-        // def data = readYaml(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
-    }
-    return data
-}
-
-void runDynamic() {
-    def terraformFolders = readOrderFromFile()
-    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + terraformFolders.size() + " steps"
-    terraformFolders.each { terraformFolder -> 
-        stageName = "Running Terraform module for $terraformFolder"
-        script {
-            stage(stageName) {
-                echo "$terraformFolder"
-            }
-        }
-    }
-}
