@@ -1,3 +1,18 @@
+def call(def fileName) {
+    def terraformFolders = readOrderFromFile(fileName)
+
+    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + terraformFolders.size() + " steps"
+    
+    terraformFolders.each { terraformFolder -> 
+        stageName = "Terraform: $terraformFolder"
+        script {
+            stage(stageName) {
+                echo "$terraformFolder"
+            }
+        }
+    }
+}
+
 def readOrderFromFile(def fileName) {
     def data = []
     if (fileExists(fileName)) {
@@ -6,19 +21,4 @@ def readOrderFromFile(def fileName) {
     }
 
     return data
-}
-
-def call(def fileName) {
-    def terraformFolders = readOrderFromFile(fileName)
-
-    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + terraformFolders.size() + " steps"
-    
-    terraformFolders.each { terraformFolder -> 
-        stageName = "Running Terraform module for $terraformFolder"
-        script {
-            stage(stageName) {
-                echo "$terraformFolder"
-            }
-        }
-    }
 }
