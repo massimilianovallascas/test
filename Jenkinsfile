@@ -10,7 +10,7 @@ pipeline {
             steps {
                 echo "getting info"
             }
-            
+            runDynamic()
         }
     }
     
