@@ -28,7 +28,7 @@ def readOrderFromFile() {
 
 void runDynamic() {
     def stages = readOrderFromFile()
-    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + stages.length + "steps"
+    echo "[INFO] Config file $params.TERRAFORM_DEPLOYMENT_ORDER_FILE contains " + stages.size() + "steps"
     stages.each { stageName ->  
         script {
             stage(stageName) {
