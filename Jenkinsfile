@@ -18,7 +18,7 @@ pipeline {
         stage("Get info"){
             steps {
                 echo "getting info"
-                runDynamic()
+                terraformStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
             }
         }
     } 
