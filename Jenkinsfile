@@ -9,10 +9,11 @@ pipeline {
         stage("Get info"){
             steps {
                 echo "getting info"
-                runDynamic()
+                
             }
         }
     }
+    runDynamic()
     
 }
 
@@ -23,13 +24,12 @@ def readOrderFromFile() {
         // def datas = readYaml(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
         
     }
-    
+
     return data
 }
 
 def runDynamic() {
-    data = readOrderFromFile()
-    println(data)
+    steps = readOrderFromFile()
     
     // parallel args.items.collectEntries { 
     //     name -> [ "${name}": { 
