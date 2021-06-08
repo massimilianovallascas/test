@@ -20,9 +20,8 @@ pipeline {
 def readOrderFromFile() {
     def data = []
     if (fileExists(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)) {
-        File file = new File(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
+        def data = new File(params.TERRAFORM_DEPLOYMENT_ORDER_FILE) as String[]
         // data = File(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
-        data = file.readLines()
         // def datas = readYaml(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
     }
     return data
