@@ -28,22 +28,16 @@ def readOrderFromFile() {
     return data
 }
 
-def runDynamic() {
-    steps = readOrderFromFile()
-    
-    // parallel args.items.collectEntries { 
-    //     name -> [ "${name}": { 
-    //         node('nodeLabel') {
-    //             stage("${name}") {
-    //                 stage("${name}-a") {
-    //                     sh "env | grep -i NODE_NAME"
-    //                 }
-    //                 stage("${name}-b") {
-    //                     sh "env | grep -i NODE_NAME"
-    //                 }
-    //             }
-    //             }
-    //         }
-    //     ]
-    // }
+void runDynamic() {
+    def steps = readOrderFromFile()
+
+    steps.each { module ->  
+        script {
+            stage(module) {
+                steps{
+                    echo "in"
+                } 
+            }
+        }
+    }
 }
