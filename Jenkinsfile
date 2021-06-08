@@ -18,7 +18,8 @@ pipeline {
 
 def readOrderFromFile() {
     def data = readFile(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
-    return data
+    def datas = readYaml(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
+    return datas
 }
 
 def runDynamic() {

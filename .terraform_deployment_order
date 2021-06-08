@@ -1,1 +1,4 @@
-test
+steps
+  - one
+  - two
+  - three
