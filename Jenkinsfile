@@ -22,21 +22,19 @@ def readOrderFromFile() {
     if (fileExists(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)) {
         data = readFile(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
         // def datas = readYaml(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
-        
     }
-
     return data
 }
 
 void runDynamic() {
-    def steps = readOrderFromFile()
+    def s = readOrderFromFile()
 
-    steps.each { module ->  
+    s.each { module ->  
         script {
             stage(module) {
-                steps{
+                
                     echo "in"
-                } 
+                
             }
         }
     }
