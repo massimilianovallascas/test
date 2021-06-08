@@ -17,7 +17,7 @@ pipeline {
 }
 
 def readOrderFromFile() {
-    def data = readFile(file: param.TERRAFORM_DEPLOYMENT_ORDER_FILE)
+    def data = readFile(file: params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
     return data
 }
 
