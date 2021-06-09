@@ -23,7 +23,8 @@ pipeline {
                         input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
                     }
                 }
-                echo "Deployment triggered by ${triggeredBy}"
+                TRIGGERED_BY = triggeredBy()
+                echo "Deployment triggered by ${triggeredBy()}"
             }
         }
         stage("Getting dynamic stages") {
