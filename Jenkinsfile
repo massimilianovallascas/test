@@ -27,7 +27,7 @@ pipeline {
                 ok "Yes please."
             }
             steps {
-                echo "Deployment approved by ${env.BUILD_USER_ID}"
+                echo "Deployment approved by ${env.BUILD_USER}"
             }
         }
         stage("Getting dynamic stages") {
