@@ -12,18 +12,18 @@ pipeline {
     
     parameters {
         string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
-        string(name: 'ENVIRONMENT', defaultValue: 'development', description: '')
+        string(name: 'TARGET_ENVIRONMENT', defaultValue: 'development', description: '')
     }
 
     stages {
         stage("Check rights") {
             when {
                 not {
-                    environment name: 'ENVIRONMENT', value: 'development' 
+                    environment name: 'TARGET_ENVIRONMENT', value: 'development' 
                 }
             }
             input {
-                message "Hi ${env.BUILD_USER_FIRST_NAME}, you are executing this scripts agains the ${ENVIRONMENT} environment. Should we continue?"
+                message "Hi ${env.BUILD_USER_FIRST_NAME}, you are executing this scripts agains the ${TARGET_ENVIRONMENT} environment. Should we continue?"
                 ok "Yes please."
             }
             steps {
