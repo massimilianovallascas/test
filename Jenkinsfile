@@ -23,7 +23,6 @@ pipeline {
                         input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
                     }
                 }
-                TRIGGERED_BY = triggeredBy()
                 echo "Deployment triggered by ${triggeredBy()}"
             }
         }
