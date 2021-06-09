@@ -17,12 +17,12 @@ pipeline {
 
     stages {
         stage("Check rights") {
-            script {
-                if (params.TARGET_ENVIRONMENT != 'development') {
-                    input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
-                }
-            }
             steps {
+                script {
+                    if (params.TARGET_ENVIRONMENT != 'development') {
+                        input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
+                    }
+                }
                 echo "Deployment triggered by ${triggeredBy}"
             }
         }
