@@ -1,6 +1,6 @@
-// @Library('payme-terraform')_
+// @Library('test')_
 
-library identifier: 'payme-terraform@master',
+library identifier: 'test@master',
     retriever: modernSCM([
       $class: 'GitSCMSource',
       remote: 'https://github.com/massimilianovallascas/test.git'
