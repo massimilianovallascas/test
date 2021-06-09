@@ -19,7 +19,7 @@ pipeline {
         stage("Check rights") {
             when {
                 not {
-                    environment name: 'TARGET_ENVIRONMENT', value: 'development' 
+                     equals expected: 'development', actual: params.TARGET_ENVIRONMENT
                 }
             }
             input {
