@@ -16,20 +16,20 @@ pipeline {
     }
 
     stages {
-        // stage("Check rights") {
-        //     when {
-        //         not {
-        //              equals expected: 'development', actual: params.TARGET_ENVIRONMENT
-        //         }
-        //     }
-        //     input {
-        //         message "Hi ${env.BUILD_USER_FIRST_NAME}, you are executing this scripts agains the ${TARGET_ENVIRONMENT} environment. Should we continue?"
-        //         ok "Yes please."
-        //     }
-        //     steps {
-        //         echo "Deployment approved by ${env.BUILD_USER_ID}"
-        //     }
-        // }
+        stage("Check rights") {
+            when {
+                not {
+                     equals expected: 'development', actual: params.TARGET_ENVIRONMENT
+                }
+            }
+            input {
+                message "Hi ${env.BUILD_USER_FIRST_NAME}, you are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
+                ok "Yes please."
+            }
+            steps {
+                echo "Deployment approved by ${env.BUILD_USER_ID}"
+            }
+        }
         stage("Getting dynamic stages") {
             steps {
                 echo "getting info"
