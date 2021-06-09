@@ -20,7 +20,9 @@ pipeline {
             steps {
                 script {
                     if (params.TARGET_ENVIRONMENT != 'development') {
-                        input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
+                        timeout(time: 1, unit: 'MINUTES') {
+                            input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
+                        }
                     }
                 }
                 echo "${triggeredBy()}"
