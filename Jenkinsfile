@@ -15,12 +15,12 @@ pipeline {
     }
 
     stages {
-        stage("Get info"){
-            steps {
-                echo "getting info"
+        // stage("Get info"){
+        //     steps {
+        //         echo "getting info"
                 dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
-            }
-        }
+        //     }
+        // }
     } 
 }
 
