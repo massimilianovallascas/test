@@ -17,17 +17,13 @@ pipeline {
 
     stages {
         stage("Check rights") {
-            when {
-                not {
-                     equals expected: 'development', actual: params.TARGET_ENVIRONMENT
+            script {
+                if (params.TARGET_ENVIRONMENT != 'development') {
+                    input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
                 }
             }
-            input {
-                message "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
-                ok "Yes please."
-            }
             steps {
-                echo "Deployment approved by ${triggeredBy}"
+                echo "Deployment triggered by ${triggeredBy}"
             }
         }
         stage("Getting dynamic stages") {
