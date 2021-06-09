@@ -26,6 +26,9 @@ pipeline {
                 message "You are executing this scripts agains the ${ENVIRONMENT} environment. Should we continue?"
                 ok "Yes please."
             }
+            steps {
+                
+            }
         }
         stage("Getting dynamic stages") {
             steps {
