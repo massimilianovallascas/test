@@ -12,15 +12,27 @@ pipeline {
     
     parameters {
         string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
+        string(name: 'ENVIRONMENT', defaultValue: 'development', description: '')
     }
 
     stages {
-        // stage("Get info"){
-        //     steps {
-        //         echo "getting info"
+        stage("Check rights") {
+            when {
+                not {
+                    environment name: 'ENVIRONMENT', value: 'development' 
+                }
+            }
+            input {
+                message "You are executing this scripts agains the ${ENVIRONMENT} environment. Should we continue?"
+                ok "Yes please."
+            }
+        }
+        stage("Getting dynamic stages") {
+            steps {
+                echo "getting info"
                 dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE)
-        //     }
-        // }
+            }
+        }
     } 
 }
 
