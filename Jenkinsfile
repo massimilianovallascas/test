@@ -23,11 +23,11 @@ pipeline {
                 }
             }
             input {
-                message "You are executing this scripts agains the ${ENVIRONMENT} environment. Should we continue?"
+                message "Hi ${env.BUILD_USER_FIRST_NAME}, you are executing this scripts agains the ${ENVIRONMENT} environment. Should we continue?"
                 ok "Yes please."
             }
             steps {
-                
+                echo "Deployment approved by ${env.BUILD_USER_ID}"
             }
         }
         stage("Getting dynamic stages") {
