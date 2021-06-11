@@ -13,7 +13,7 @@ def init() {
     """
 }
 
-def plan(int parallelism = 256, String logFile = "terraform_plan.log") {
+def plan(int parallelism = 256, String logFile = 'terraform_plan.log') {
     sh """
         ./terraform plan -no-color --paralllelism ${parallelism} | tee ../${logfile}
     """
