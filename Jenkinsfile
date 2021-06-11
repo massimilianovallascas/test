@@ -24,6 +24,20 @@ pipeline {
             steps {
                 script {
                     echo env.BRANCH_NAME
+                    if (env.BRANCH_NAME == 'master') {
+                        lock('publish master') {
+                            TAG = sh (
+                                returnStdout: true,
+                                script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
+                            ).trim()
+
+                            if (TAG) {
+                                echo "Deploying to Prod ${TAG}"
+                            } else {
+                                echo error('No tag')
+                            }
+                        }
+                    }
                     if (params.TARGET_ENVIRONMENT == 'production' && !params.version) {
                         error('When deploying to prod you must specify a version.')
                     }
