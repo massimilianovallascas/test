@@ -1,10 +1,3 @@
-commonLib = library(identifier: 'common@master', retriever: modernSCM(
-    [$class: 'GitSCMSource',
-     remote: '',
-     credentialsId: 'GITHUB_CREDS'
-     ]
-))
-
 // @Library('test')_
 
 library identifier: 'test@master',
