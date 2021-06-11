@@ -11,7 +11,7 @@ pipeline {
     
     parameters {
         string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
-        string(name: 'TARGET_ENVIRONMENT', defaultValue: 'development', description: '')
+        // string(name: 'TARGET_ENVIRONMENT', defaultValue: 'development', description: '')
         string(name: 'accessKey', defaultValue: '', description: ' The AWS Access Key to use.')
         password(name: 'secretKey', defaultValue: '', description: ' The AWS Secret Key to use.')
         string(name: 'sessionToken', defaultValue: '', description: ' The AWS Session Token to use.')
@@ -23,29 +23,10 @@ pipeline {
         stage("Validate parameters rights") {
             steps {
                 script {
-                    echo env.BRANCH_NAME
-                    if (env.BRANCH_NAME == 'master') {
-                        lock('publish master') {
-                            TAG = sh (
-                                returnStdout: true,
-                                script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
-                            ).trim()
-
-                            if (TAG) {
-                                echo "Deploying to Prod ${TAG}"
-                            } else {
-                                echo error('No tag')
-                            }
-                        }
-                    }
-                    if (params.TARGET_ENVIRONMENT == 'production' && !params.version) {
-                        error('When deploying to prod you must specify a version.')
-                    }
-                    if (params.TARGET_ENVIRONMENT != 'development') {
-                        timeout(time: 1, unit: 'MINUTES') {
-                            input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
-                        }
-                    }
+                    check.commitHasTag("master")
+                    check.versionExists("master")
+                    check.deployContinue()
+                    
                 }
                 echo "${triggeredBy()}"
             }
