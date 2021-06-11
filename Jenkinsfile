@@ -23,7 +23,7 @@ pipeline {
         stage("Validate parameters rights") {
             steps {
                 script {
-                    echo $env.BRANCH_NAME
+                    echo env.BRANCH_NAME
                     if (params.TARGET_ENVIRONMENT == 'production' && !params.version) {
                         error('When deploying to prod you must specify a version.')
                     }
