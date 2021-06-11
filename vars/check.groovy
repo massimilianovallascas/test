@@ -28,7 +28,7 @@ def deployContinue() {
 }
 
 def versionExists(String expectedBranch) {
-    if (params.TARGET_ENVIRONMENT == expectedBranch && !params.version) {
+    if (env.BRANCH_NAME == expectedBranch && !params.version) {
         error("When deploying to ${expectedBranch} you must specify a version.")
     }
 }
