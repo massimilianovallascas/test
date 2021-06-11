@@ -9,7 +9,7 @@ def call(def fileName) {
             stage(stageName) {
                 terraform.init()
                 terraform.plan()
-                terraform.build()
+                terraform.apply()
             }
         }
     }

@@ -19,8 +19,8 @@ def plan(int parallelism = 256, logFile = "terraform_plan.log") {
     """
 }
 
-def build(int parallelism = 256) {
+def apply(int parallelism = 256) {
     sh """
-        ./terraform build -no-color --parallelism ${parallelism}
+        ./terraform apply -no-color --parallelism ${parallelism}
     """
 }
