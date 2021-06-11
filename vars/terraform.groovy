@@ -9,6 +9,6 @@ def download(String version) {
 
 def init() {
     sh """
-        ./terraform plan -no-color --backend-config
+        ./terraform plan -no-color
     """
 }
