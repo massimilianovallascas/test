@@ -24,11 +24,19 @@ pipeline {
             steps {
                 script {
                     // check.commitHasTag("master")
-                    check.versionExists("master")
-                    check.deployContinue()
+                    // check.versionExists("master")
+                    // check.deployContinue()
                     
                 }
                 echo "${triggeredBy()}"
+            }
+        }
+        stage("Setup terraform") {
+            steps {
+                script {
+                    terraform.download("1.0.0")
+                    terraform.init()
+                }
             }
         }
         stage("Getting dynamic stages") {
