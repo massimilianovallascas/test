@@ -34,7 +34,6 @@ pipeline {
             steps {
                 script {
                     terraform.download("1.0.0")
-                    terraform.init()
                 }
             }
         }

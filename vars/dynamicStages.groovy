@@ -7,7 +7,9 @@ def call(def fileName) {
         stageName = "$s"
         script {
             stage(stageName) {
-                echo "$s"
+                terraform.init()
+                terraform.plan()
+                terragorm.apply()
             }
         }
     }
