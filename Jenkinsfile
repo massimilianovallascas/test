@@ -22,12 +22,11 @@ pipeline {
     stages {
         stage("Validate parameters rights") {
             steps {
-                script {
-                    // check.commitHasTag("master")
-                    // check.versionExists("master")
-                    // check.deployContinue()
-                    
-                }
+                // script {
+                //     check.commitHasTag("master")
+                //     check.versionExists("master")
+                //     check.deployContinue()
+                // }
                 echo "${triggeredBy()}"
             }
         }
