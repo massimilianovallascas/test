@@ -23,7 +23,7 @@ pipeline {
         stage("Validate parameters rights") {
             steps {
                 script {
-                    check.commitHasTag("master")
+                    // check.commitHasTag("master")
                     check.versionExists("master")
                     check.deployContinue()
                     
