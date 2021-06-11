@@ -15,7 +15,7 @@ def init() {
 
 def plan(int parallelism = 256, logFile = "terraform_plan.log") {
     sh """
-        ./terraform plan -no-color --paralllelism ${parallelism} | tee ../${logfile}
+        ./terraform plan -no-color --paralllelism ${parallelism}
     """
 }
 
