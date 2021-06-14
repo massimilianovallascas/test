@@ -16,7 +16,6 @@ pipeline {
 
     stages {
         stage("Perform checks") {
-            steps {
                 if (params.version) {
                     checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: git.GIT_URL, credentialsId: credential]], branches: [[name: params.version]]], poll: false
                 } else {
