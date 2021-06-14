@@ -16,19 +16,20 @@ pipeline {
 
     stages {
         stage("Perform checks") {
-            if (params.version) {
-                checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: git.GIT_URL, credentialsId: credential]], branches: [[name: params.version]]], poll: false
-            } else {
+            steps {
                 script {
-                // check.commitHasTag("master")
+                    if (params.version) {
+                        checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: git.GIT_URL, credentialsId: credential]], branches: [[name: params.version]]], poll: false
+                    } else {
+                        // check.commitHasTag("master")
+                    }
+                    script {
+                        // check.versionExists("master", params.version)
+                        // check.deployContinue()
+                    }
                 }
+                echo "${triggeredBy()}"
             }
-            script {
-                check.versionExists("master", params.version)
-                // check.deployContinue()
-            }
-            
-            echo "${triggeredBy()}"
         }
         
         stage("Setup terraform") {
