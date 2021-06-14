@@ -15,11 +15,11 @@ pipeline {
     }
 
     stages {
-        stage("Validate parameters rights") {
+        stage("Perform checks") {
             steps {
                 script {
                 //     check.commitHasTag("master")
-                     check.versionExists("master", param.version)
+                     check.versionExists("master", params.version)
                 //     check.deployContinue()
                 }
                 echo "${triggeredBy()}"
