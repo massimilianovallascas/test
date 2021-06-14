@@ -14,6 +14,8 @@ def call(def fileName) {
                 milestone()
                 terraform.apply()
                 milestone()
+                terraform.clean()
+                milestone()
             }
         }
     }
