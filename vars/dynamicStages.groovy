@@ -5,22 +5,23 @@ def call(def fileName) {
     
     dynamicStages.each { s -> 
         stageName = "$s"
-        script {
-            stage(stageName) {
-                milestone()
-                terraform.init()
-                milestone()
-                terraform.plan()
-                milestone()
-                terraform.apply()
-                milestone()
+        stage(stageName) {
+            steps {
+                script {
+                    milestone()
+                    terraform.init()
+                    milestone()
+                    terraform.plan()
+                    milestone()
+                    terraform.apply()
+                    milestone()
+                }
             }
             post {
                 success {
                     terraform.clean()
                 }
             }
-           
         }
     }
 }
