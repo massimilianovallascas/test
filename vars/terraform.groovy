@@ -1,4 +1,4 @@
-def buildPlan = "build.plan"
+buildPlan = "build.plan"
 
 def download(String version) {
     sh """
