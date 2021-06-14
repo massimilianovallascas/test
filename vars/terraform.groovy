@@ -17,18 +17,18 @@ def init() {
 
 def plan(int parallelism = GlobalVars.parallelism) {
     sh """
-        ./terraform plan -no-color --parallelism ${parallelism} --out ./
-    """ + GlobalVars.buildPlan
+        ./terraform plan -no-color --parallelism ${parallelism} --out ./${GlobalVars.buildPlan}
+    """
 }
 
 def apply(int parallelism = GlobalVars.parallelism) {
     sh """
-        ./terraform apply -no-color --parallelism ${parallelism} ./
-    """ + GlobalVars.buildPlan
+        ./terraform apply -no-color --parallelism ${parallelism} ./${GlobalVars.buildPlan}
+    """
 }
 
 def clean() {
      sh """
-        rm -rm ./
-    """ + GlobalVars.buildPlan
+        rm -rm ./${GlobalVars.buildPlan}
+    """
 }
