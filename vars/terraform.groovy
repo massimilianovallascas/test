@@ -2,9 +2,8 @@ import massi.terraform.GlobalVars
 
 def download(String version) {
     sh """
-        echo "Download terraform"
-        curl https://releases.hashicorp.com/terraform/${version}/terraform_${version}_linux_amd64.zip -o terraform.zip
-        unzip -o terraform.zip -d .
+        if [[ ! -f "/tmp/terraform_${version}.zip" ]] && curl https://releases.hashicorp.com/terraform/${version}/terraform_${version}_linux_amd64.zip -o terraform_${version}.zip
+        unzip -o /tmp/terraform_${version}.zip -d .
         chmod 0755 ./terraform
     """
 }
