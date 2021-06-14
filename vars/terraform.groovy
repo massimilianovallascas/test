@@ -28,4 +28,8 @@ def apply(int parallelism = parallelism) {
     """
 }
 
-def clean()
+def clean() {
+     sh """
+        rm -rm ./${buildPlan}
+    """
+}
