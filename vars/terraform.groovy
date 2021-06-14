@@ -1,4 +1,4 @@
-buildPlan = "build.plan"
+import massi.terraform
 
 def download(String version) {
     sh """
@@ -15,20 +15,20 @@ def init() {
     """
 }
 
-def plan(int parallelism = 256) {
+def plan(int parallelism = GlobalVars.parallelism) {
     sh """
-        ./terraform plan -no-color --parallelism ${parallelism} --out ./${buildPlan}
-    """
+        ./terraform plan -no-color --parallelism ${parallelism} --out ./
+    """ + GlobalVars.buildPlan
 }
 
-def apply(int parallelism = 256) {
+def apply(int parallelism = GlobalVars.parallelism) {
     sh """
-        ./terraform apply -no-color --parallelism ${parallelism} ./${buildPlan}
-    """
+        ./terraform apply -no-color --parallelism ${parallelism} ./
+    """ + GlobalVars.buildPlan
 }
 
 def clean() {
      sh """
-        rm -rm ./${buildPlan}
-    """
+        rm -rm ./
+    """ + GlobalVars.buildPlan
 }
