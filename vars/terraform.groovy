@@ -1,5 +1,4 @@
 def buildPlan = "build.plan"
-def parallelism = 256
 
 def download(String version) {
     sh """
@@ -16,13 +15,13 @@ def init() {
     """
 }
 
-def plan(int parallelism = parallelism) {
+def plan(int parallelism = 256) {
     sh """
         ./terraform plan -no-color --parallelism ${parallelism} --out ./${buildPlan}
     """
 }
 
-def apply(int parallelism = parallelism) {
+def apply(int parallelism = 256) {
     sh """
         ./terraform apply -no-color --parallelism ${parallelism} ./${buildPlan}
     """
