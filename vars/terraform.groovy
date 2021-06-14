@@ -1,4 +1,4 @@
-import massi.terraform
+import massi.terraform.GlobalVars
 
 def download(String version) {
     sh """
