@@ -23,7 +23,7 @@ pipeline {
                     } else {
                         // check.commitHasTag("master")
                     }
-                    check.versionExists("master", params.version)
+                    //check.versionExists("master", params.version)
                     check.deployContinue()
                 }
                 echo "${triggeredBy()}"
