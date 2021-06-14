@@ -28,6 +28,6 @@ def apply(int parallelism = GlobalVars.parallelism) {
 
 def clean() {
      sh """
-        rm -rm ./${GlobalVars.buildPlan}
+        rm -rf ./${GlobalVars.buildPlan}
     """
 }
