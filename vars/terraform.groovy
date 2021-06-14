@@ -1,3 +1,6 @@
+def buildPlan = "build.plan"
+def parallelism = 256
+
 def download(String version) {
     sh """
         echo "Download terraform"
@@ -13,14 +16,16 @@ def init() {
     """
 }
 
-def plan(int parallelism = 256, logFile = "terraform_plan.log") {
+def plan(int parallelism = parallelism) {
     sh """
-        ./terraform plan -no-color --parallelism ${parallelism}
+        ./terraform plan -no-color --parallelism ${parallelism} --out ./${buildPlan}
     """
 }
 
-def apply(int parallelism = 256) {
+def apply(int parallelism = parallelism) {
     sh """
-        ./terraform apply -no-color --parallelism ${parallelism}
+        ./terraform apply -no-color --parallelism ${parallelism} ./${buildPlan}
     """
 }
+
+def clean()

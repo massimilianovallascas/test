@@ -7,10 +7,20 @@ def call(def fileName) {
         stageName = "$s"
         script {
             stage(stageName) {
+                milestone()
                 terraform.init()
+                milestone()
                 terraform.plan()
+                milestone()
                 terraform.apply()
+                milestone()
             }
+            post {
+                success {
+                    terraform.clean()
+                }
+            }
+           
         }
     }
 }
