@@ -6,7 +6,6 @@ def call(def fileName) {
     dynamicStages.each { s -> 
         stageName = "$s"
         stage(stageName) {
-
             script {
                 milestone()
                 terraform.init()
@@ -15,12 +14,6 @@ def call(def fileName) {
                 milestone()
                 terraform.apply()
                 milestone()
-            }
-            
-            post {
-                success {
-                    terraform.clean()
-                }
             }
         }
     }
