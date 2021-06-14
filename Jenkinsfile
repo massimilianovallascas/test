@@ -16,18 +16,18 @@ pipeline {
 
     stages {
         stage("Perform checks") {
-                if (params.version) {
-                    checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: git.GIT_URL, credentialsId: credential]], branches: [[name: params.version]]], poll: false
-                } else {
-                    script {
-                    // check.commitHasTag("master")
-                    }
-                }
+            if (params.version) {
+                checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: git.GIT_URL, credentialsId: credential]], branches: [[name: params.version]]], poll: false
+            } else {
                 script {
-                    check.versionExists("master", params.version)
-                    // check.deployContinue()
+                // check.commitHasTag("master")
                 }
             }
+            script {
+                check.versionExists("master", params.version)
+                // check.deployContinue()
+            }
+            
             echo "${triggeredBy()}"
         }
         
