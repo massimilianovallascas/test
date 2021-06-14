@@ -9,7 +9,7 @@ def commitHasTag(String expectedBranch) {
             ).trim()
 
             if (tag) {
-                echo "Deploying to ${expectedBranch} => TAG: ${TAG}"
+                echo "Deploying version ${TAG}"
             } else {
                 echo error("No tag found for the current commit on ${expectedBranch}")
             }
