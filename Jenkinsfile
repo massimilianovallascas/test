@@ -18,7 +18,7 @@ pipeline {
         stage("Perform checks") {
             steps {
                 script {
-                    if (params.version) {
+                    if (params.version != "") {
                         checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: git.GIT_URL, credentialsId: credential]], branches: [[name: params.version]]], poll: false
                     } else {
                         // check.commitHasTag("master")
