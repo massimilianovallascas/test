@@ -9,7 +9,7 @@ def commitHasTag(String expectedBranch) {
             ).trim()
 
             if (tag) {
-                echo "Deploying version ${TAG}"
+                echo "Deploying version: ${TAG}"
             } else {
                 echo error("No tag found for the current commit on ${expectedBranch}")
             }
@@ -20,9 +20,15 @@ def commitHasTag(String expectedBranch) {
 }
 
 def deployContinue() {
-    if (env.BRANCH_NAME != 'development') {
+    dev targetEnvironment = null
+    if (env.BRANCH_NAME == "master") {
+        targetEnvironment = "production"
+    } else {
+        targetEnvironment = emv.BRANCH_NAME
+    }
+    if (targetEnvironment != 'development') {
         timeout(time: 1, unit: 'MINUTES') {
-            input message: "You are executing this scripts agains the ${params.TARGET_ENVIRONMENT} environment. Should we continue?"
+            input message: "You are executing this scripts agains the ${targetEnvironment} environment. Should we continue?"
         }
     }
 }
