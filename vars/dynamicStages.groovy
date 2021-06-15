@@ -8,6 +8,8 @@ def call(def fileName) {
         stage(stageName) {
             script {
                 milestone()
+                aws.getAWSToken()
+                milestone()
                 terraform.init()
                 milestone()
                 terraform.plan()

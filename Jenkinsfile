@@ -12,8 +12,8 @@ pipeline {
     parameters {
         string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
         string(name: 'VERSION', defaultValue: '', description: 'e.g. 1.3.8 (required for production)')
-        string(name: 'HSBC_PASS', defaultValue: '', description: 'e.g. 1.3.8 (required for production)')
-        string(name: 'CR', defaultValue: '', description: 'e.g. 1.3.8 (required for production)')
+        string(name: 'HSBC_PASS', defaultValue: '', description: 'Your personal password')
+        string(name: 'CR', defaultValue: '', description: 'Change request number (required for production)')
     }
 
     stages {
@@ -26,7 +26,7 @@ pipeline {
                         // check.commitHasTag("master")
                     }
                     //check.versionExists("master", params.version)
-                    check.deployContinue()
+                    //check.deployContinue()
                 }
                 echo "${triggeredBy()}"
             }
