@@ -1,5 +1,5 @@
 def getCredentials() {
-    stage('Build') {
+    stage('Get AWS Credentials') {
         agent {
             docker {
                 image 'python:latest'

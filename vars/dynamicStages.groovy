@@ -5,10 +5,9 @@ def call(def fileName) {
     
     dynamicStages.each { s -> 
         stageName = "$s"
+        aws.getAWSToken()
         stage(stageName) {
             script {
-                milestone()
-                aws.getAWSToken()
                 milestone()
                 terraform.init()
                 milestone()
