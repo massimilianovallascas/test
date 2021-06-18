@@ -5,7 +5,7 @@ def call(def fileName) {
     
     dynamicStages.each { s -> 
         stageName = "$s"
-        aws.getCredentials()
+        // aws.getCredentials()
         stage(stageName) {
             script {
                 milestone()
