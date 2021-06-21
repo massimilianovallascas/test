@@ -16,7 +16,7 @@ def folderHasTerraformFile(filePath) {
 def stages() {
     def test = folderHasTerraformFile('*.tf')
     println test
-    if (folderHasTerraformFile('*.tf') == true) {
+    if (test) {
         script {
             milestone()
             init()
