@@ -15,7 +15,7 @@ def folderHasTerraformFile(filePath) {
 }
 
 def stages() {
-    if (folderHasTerraformFile('.terraform_deployment_order')) {
+    if (folderHasTerraformFile('*.tf') == true) {
         milestone()
         init()
         milestone()
