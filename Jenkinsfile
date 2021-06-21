@@ -39,7 +39,7 @@ pipeline {
                 }
             }
         }
-        stage("Getting dynamic stages") {
+        //stage("Getting dynamic stages") {
             // stages {
             //     stage('a') {
             //         steps {
@@ -54,7 +54,7 @@ pipeline {
             // }
             this.dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
 
-        }
+        //}
     } 
     // post {
     //     regression {
