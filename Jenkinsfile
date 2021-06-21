@@ -51,25 +51,25 @@ pipeline {
                 }
             }
         }
-        stage("Getting dynamic stages") {
-            // stages {
-            //     stage('a') {
-            //         steps {
-            //             echo "aa"
-            //         }
-            //     }
-            //     stage('b') {
-            //         steps {
-            //             echo "bb"
-            //         }
-            //     }
-            // }
-            steps {
+        // stage("Getting dynamic stages") {
+        //     // stages {
+        //     //     stage('a') {
+        //     //         steps {
+        //     //             echo "aa"
+        //     //         }
+        //     //     }
+        //     //     stage('b') {
+        //     //         steps {
+        //     //             echo "bb"
+        //     //         }
+        //     //     }
+        //     // }
+        //     steps {
 
-                    dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
+        //             dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
                 
-            }
-        }
+        //     }
+        // }
 
         //}
     } 
