@@ -8,15 +8,9 @@ def download(String version) {
     """
 }
 
-def folderHasTerraformFile(filePath) {
-    def fe = fileExists filePath
-    return fe
-}
-
 def stages() {
-    def test = folderHasTerraformFile('*.tf')
-    println test
-    if (false) {
+    def f = '*.tf'
+    if (utils.folderHasFile(f)) {
         script {
             milestone()
             init()
@@ -28,6 +22,8 @@ def stages() {
             clean()
             milestone()
         }
+    } else {
+        echo error("File not found (${f}), execution interrupted.")
     }
 }
 
