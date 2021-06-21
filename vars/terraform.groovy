@@ -17,15 +17,17 @@ def stages() {
     def test = folderHasTerraformFile('*.tf')
     println test
     if (folderHasTerraformFile('*.tf') == true) {
-        milestone()
-        init()
-        milestone()
-        plan()
-        milestone()
-        apply()
-        milestone()
-        clean()
-        milestone()
+        script {
+            milestone()
+            init()
+            milestone()
+            plan()
+            milestone()
+            apply()
+            milestone()
+            clean()
+            milestone()
+        }
     }
 }
 

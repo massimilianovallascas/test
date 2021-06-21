@@ -7,9 +7,7 @@ def call(def fileName) {
         stageName = "$s"
         // aws.getCredentials()
         stage(stageName) {
-            script {
-                terraform.stages()
-            }
+            terraform.stages()
         }
     }
 }
