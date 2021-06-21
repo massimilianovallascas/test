@@ -21,15 +21,7 @@ def stage(stageName) {
                 echo "Terraform files found (${fpe})."
                 if (fpe.toInteger() > 0) {
                     script {
-                        milestone()
-                        init()
-                        milestone()
-                        plan()
-                        milestone()
-                        apply()
-                        milestone()
-                        clean()
-                        milestone()
+                        steps()
                     }
                 } else {
                     echo error("File not found (${filePattern}), execution interrupted.")
@@ -39,6 +31,18 @@ def stage(stageName) {
             echo error("File not found (${stageName}), execution interrupted.")
         }
     }
+}
+
+def steps() {
+    milestone()
+    init()
+    milestone()
+    plan()
+    milestone()
+    apply()
+    milestone()
+    clean()
+    milestone()
 }
 
 def init() {
