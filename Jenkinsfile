@@ -8,7 +8,11 @@ library identifier: 'test@master',
 
 pipeline {
     agent any
-    
+
+    options {
+        timestamps()
+    }
+
     parameters {
         string(name: 'TERRAFORM_DEPLOYMENT_ORDER_FILE', defaultValue: '.terraform_deployment_order', description: '')
         string(name: 'VERSION', defaultValue: '', description: 'e.g. 1.3.8 (required for production)')
@@ -41,8 +45,12 @@ pipeline {
                         }
                     }
                 }
-                node {
-                    aws.getCredentials()                  
+                 stage("Setup terraform") {
+                    steps {
+                        script {
+                             aws.getCredentials()     
+                        }
+                    }
                 }
             }
         }
