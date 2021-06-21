@@ -17,7 +17,7 @@ def stage(stageName) {
         if (fe) {
             dir(stageName) {
                 // def fpe = fileExists filePattern    
-                def fpe = "find . -name '${filePattern}' | wc -l".execute().text
+                def fpe = sh(returnStdout: true, script: "find . -name '${filePattern}' | wc -l").trim()
                 println fpe
                 if (fpe.toInteger() > 0) {
                     script {
