@@ -43,7 +43,7 @@ pipeline {
                 }
                 stage("Get AWS credentials") {
                     steps {
-                        getCredentials()
+                        aws.getCredentials()
                     }
                 }
             }
