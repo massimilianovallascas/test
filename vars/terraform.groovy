@@ -15,11 +15,13 @@ def stage(stageName) {
         def fe = fileExists stageName
         if (fe) {
             script {
+                sh "pwd"
                 sh "cd ${stageName}"
             }
             def fpe = fileExists filePattern
             if (fpe) {
                 script {
+                    sh "pwd"
                     milestone()
                     init()
                     milestone()
@@ -32,6 +34,10 @@ def stage(stageName) {
                 }
             } else {
                 echo error("File not found (${filePattern}), execution interrupted.")
+            }
+            script {
+                sh "cd .."
+                sh "pwd"
             }
         }
     }
