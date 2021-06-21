@@ -53,10 +53,9 @@ pipeline {
             //     }
             // }
             steps {
-                script {
-                    dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
 
-                }
+                    dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
+                
             }
         }
 
