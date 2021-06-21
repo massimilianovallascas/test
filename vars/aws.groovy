@@ -7,7 +7,10 @@ def getCredentials() {
             //     }
             // }
             steps {
-                sh 'python --version'
+                script {
+                    sh 'python --version'
+
+                }
             }
         }
 }
