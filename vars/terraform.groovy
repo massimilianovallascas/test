@@ -19,7 +19,7 @@ def stage(stageName) {
                 // def fpe = fileExists filePattern    
                 def fpe = "find . -name '${filePattern}' | wc -l | xargs".execute().text
                 println fpe
-                if (fpe > 0) {
+                if (fpe.toInteger() > 0) {
                     script {
                         sh "pwd"
                         milestone()
