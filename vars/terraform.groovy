@@ -10,11 +10,12 @@ def download(String version) {
 
 def folderHasTerraformFile(filePath) {
     def fe = fileExists filePath
-    println fe
     return fe
 }
 
 def stages() {
+    def test = folderHasTerraformFile('*.tf')
+    println test
     if (folderHasTerraformFile('*.tf') == true) {
         milestone()
         init()
