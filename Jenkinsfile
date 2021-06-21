@@ -42,7 +42,7 @@ pipeline {
         stage("Getting dynamic stages") {
             steps {
                 // dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, stg)
-                a("zzz", c)
+                a("zzz", this.&c)
             }
         }
     } 
@@ -62,6 +62,6 @@ def a(String a, Closure b) {
     b()
 }
 
-def c = {
+def c() {
     println "b"
 }
