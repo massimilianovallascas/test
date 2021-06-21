@@ -5,10 +5,7 @@ def call(def fileName) {
     
     dynamicStages.each { s -> 
         stageName = "$s"
-        // aws.getCredentials()
-        stage(stageName) {
-            terraform.stages()
-        }
+        terraform.stages()
     }
 }
 
