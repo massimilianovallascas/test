@@ -3,10 +3,12 @@ def call(def fileName, Closure c) {
 
     echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
     
-    dynamicStages.each { s -> 
-        stageName = "$s"
-        // terraform.stage(stageName)
-        c(stageName)
+    stages {
+        dynamicStages.each { s -> 
+            stageName = "$s"
+            // terraform.stage(stageName)
+            c(stageName)
+        }
     }
 }
 

@@ -40,19 +40,19 @@ pipeline {
             }
         }
         stage("Getting dynamic stages") {
-            stages {
-                stage('a') {
-                    steps {
-                        echo "aa"
-                    }
-                }
-                stage('b') {
-                    steps {
-                        echo "bb"
-                    }
-                }
-                // dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
-            }
+            // stages {
+            //     stage('a') {
+            //         steps {
+            //             echo "aa"
+            //         }
+            //     }
+            //     stage('b') {
+            //         steps {
+            //             echo "bb"
+            //         }
+            //     }
+            // }
+            dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
 
         }
     } 
