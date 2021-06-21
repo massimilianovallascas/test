@@ -9,13 +9,15 @@ def download(String version) {
 }
 
 def stage(stageName) {
-    def filePattern = 'main.tf'
+//    def filePattern = 'main.tf'
+    def filePattern = '*.tf'
     // aws.getCredentials()
     stage(stageName) {
         def fe = fileExists stageName
         if (fe) {
             dir(stageName) {
-                def fpe = fileExists filePattern
+                // def fpe = fileExists filePattern
+                def fpe = findFiles(glob: filePattern)
                 if (fpe) {
                     script {
                         sh "pwd"
@@ -34,7 +36,7 @@ def stage(stageName) {
                 }
             }
         } else {
-            echo error("File not found (${filePattern}), execution interrupted.")
+            echo error("File not found (${stageName}), execution interrupted.")
         }
     }
 }
