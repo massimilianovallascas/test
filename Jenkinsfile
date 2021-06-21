@@ -32,11 +32,16 @@ pipeline {
             }
         }
         
-        stage("Setup terraform") {
-            steps {
-                script {
-                    terraform.download("1.0.0")
+        stage("Setup") {
+            parallel {
+                stage("Setup terraform") {
+                    steps {
+                        script {
+                            terraform.download("1.0.0")
+                        }
+                    }
                 }
+                getCredentials()
             }
         }
         stage("Getting dynamic stages") {
