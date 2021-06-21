@@ -1,5 +1,4 @@
 def getCredentials() {
-    return {
         stage('Get AWS Credentials') {
             // agent {
             //     docker {
@@ -11,5 +10,4 @@ def getCredentials() {
                 sh 'python --version'
             }
         }
-    }
 }
