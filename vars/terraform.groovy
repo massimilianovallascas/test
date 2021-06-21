@@ -9,7 +9,7 @@ def download(String version) {
 }
 
 def stage(stageName) {
-//    def filePattern = 'main.tf'
+    // def filePattern = 'main.tf'
     def filePattern = '*.tf'
     // aws.getCredentials()
     stage(stageName) {
@@ -17,8 +17,10 @@ def stage(stageName) {
         if (fe) {
             dir(stageName) {
                 // def fpe = fileExists filePattern
-                def fpe = findFiles(glob: filePattern)
-                if (fpe) {
+                script {
+                    fpe = "find . -name '${filePattern}' | wc -l | xargs"
+                }
+                if (fpe > 0) {
                     script {
                         sh "pwd"
                         milestone()
