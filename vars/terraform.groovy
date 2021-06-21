@@ -33,9 +33,8 @@ def stage(stageName) {
                     echo error("File not found (${filePattern}), execution interrupted.")
                 }
             }
-            script {
-                sh "pwd"
-            }
+        } else {
+            echo error("File not found (${filePattern}), execution interrupted.")
         }
     }
 }
