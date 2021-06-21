@@ -42,19 +42,19 @@ def stage(stageName) {
 
 def init() {
     sh """
-        ./terraform init -no-color
+        ../terraform init -no-color
     """
 }
 
 def plan(int parallelism = GlobalVars.parallelism) {
     sh """
-        ./terraform plan -no-color --parallelism ${parallelism} --out ./${GlobalVars.buildPlan}
+        ../terraform plan -no-color --parallelism ${parallelism} --out ./${GlobalVars.buildPlan}
     """
 }
 
 def apply(int parallelism = GlobalVars.parallelism) {
     sh """
-        ./terraform apply -no-color --parallelism ${parallelism} ./${GlobalVars.buildPlan}
+        ../terraform apply -no-color --parallelism ${parallelism} ./${GlobalVars.buildPlan}
     """
 }
 
