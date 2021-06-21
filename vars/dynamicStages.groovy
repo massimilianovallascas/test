@@ -8,7 +8,7 @@ def call(def fileName) {
         // aws.getCredentials()
         stage(stageName) {
             script {
-                terragorm.stages()
+                terraform.stages()
             }
         }
     }
