@@ -10,14 +10,14 @@ def download(String version) {
 
 def stage(stageName) {
     // def filePattern = 'main.tf'
-    def filePattern = '*.tfx'
+    def filePattern = '*.tf'
     // aws.getCredentials()
     stage(stageName) {
         def fe = fileExists stageName
         if (fe) {
             dir(stageName) {
                 // def fpe = fileExists filePattern    
-                def fpe = "find . -name '${filePattern}' | wc -l | xargs".execute().text
+                def fpe = "find . -name '${filePattern}' | wc -l".execute().text
                 println fpe
                 if (fpe.toInteger() > 0) {
                     script {
