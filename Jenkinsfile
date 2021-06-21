@@ -45,7 +45,7 @@ pipeline {
                         }
                     }
                 }
-                 stage("Setup terraform") {
+                 stage("Setup AWS") {
                     steps {
                         script {
                              aws.getCredentials()     
