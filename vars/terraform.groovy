@@ -18,10 +18,9 @@ def stage(stageName) {
             dir(stageName) {
                 // def fpe = fileExists filePattern    
                 def fpe = sh(returnStdout: true, script: "find . -name '${filePattern}' | wc -l").trim()
-                echo "Found ${fpe} terraform files."
+                echo "Terraform files found (${fpe})."
                 if (fpe.toInteger() > 0) {
                     script {
-                        sh "pwd"
                         milestone()
                         init()
                         milestone()
