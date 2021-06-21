@@ -41,7 +41,9 @@ pipeline {
                         }
                     }
                 }
-                getCredentials()
+                stage("Get AWS credentials") {
+                    getCredentials()
+                }
             }
         }
         stage("Getting dynamic stages") {
