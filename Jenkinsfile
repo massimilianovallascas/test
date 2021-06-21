@@ -41,7 +41,7 @@ pipeline {
                         }
                     }
                 }
-                stage("Get AWS credentials") {
+                stage("Setup AWS") {
                     steps {
                         script {
                             aws.getCredentials()
