@@ -6,6 +6,8 @@ library identifier: 'test@master',
       remote: 'https://github.com/massimilianovallascas/test.git'
 ])
 
+apply from: 'terraform'
+
 pipeline {
     agent any
     
@@ -41,7 +43,7 @@ pipeline {
         }
         stage("Getting dynamic stages") {
             steps {
-                dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.stg)
+                dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, stg)
             }
         }
     } 
