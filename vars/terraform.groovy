@@ -9,7 +9,7 @@ def download(String version) {
 }
 
 def folderHasTerraformFile(filePath) {
-    return fileExists filePath
+    return fileExists(filePath)
 }
 
 def stages() {
