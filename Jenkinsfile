@@ -62,6 +62,6 @@ def a(String a, Closure b) {
     b()
 }
 
-def c() {
+def c = {
     println "b"
 }
