@@ -52,7 +52,7 @@ pipeline {
             //         }
             //     }
             // }
-            dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
+            this.dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
 
         }
     } 
