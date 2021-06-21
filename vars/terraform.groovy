@@ -32,6 +32,7 @@ def stage(stageName) {
 }
 
 def steps() {
+    steps {
     script {
         milestone()
         init()
@@ -42,6 +43,7 @@ def steps() {
         milestone()
         clean()
         milestone()
+    }
     }
 }
 
