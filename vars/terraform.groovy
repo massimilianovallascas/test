@@ -31,7 +31,7 @@ def stage(stageName) {
                     milestone()
                 }
             } else {
-                echo error("File not found (${f}), execution interrupted.")
+                echo error("File not found (${filePattern}), execution interrupted.")
             }
         }
     }
