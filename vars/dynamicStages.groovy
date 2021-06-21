@@ -5,7 +5,7 @@ def call(def fileName) {
     
     dynamicStages.each { s -> 
         stageName = "$s"
-        terraform.stages()
+        terraform.stage(stageName)
     }
 }
 

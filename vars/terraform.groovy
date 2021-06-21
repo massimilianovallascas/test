@@ -8,7 +8,7 @@ def download(String version) {
     """
 }
 
-def stages() {
+def stage(stageName) {
     def f = '*.tf'
     // aws.getCredentials()
     stage(stageName) {
