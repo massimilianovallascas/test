@@ -41,7 +41,8 @@ pipeline {
         }
         stage("Getting dynamic stages") {
             steps {
-                dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, callback(terraform.stg))
+                // dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, stg)
+                a(c)
             }
         }
     } 
@@ -56,3 +57,11 @@ pipeline {
     // }
 }
 
+def a(String a, Closure b) {
+    println a
+    b()
+}
+
+def c() {
+    println "b"
+}
