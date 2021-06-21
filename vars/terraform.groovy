@@ -18,6 +18,7 @@ def stage(stageName) {
             dir(stageName) {
                 // def fpe = fileExists filePattern    
                 def fpe = "find . -name '${filePattern}' | wc -l | xargs"
+                println fpe
                 if (fpe > 0) {
                     script {
                         sh "pwd"
