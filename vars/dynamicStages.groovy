@@ -1,4 +1,4 @@
-def call(def fileName, Closure stage) {
+def call(def fileName, Closure c) {
     def dynamicStages = readOrderFromFile(fileName)
 
     echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
@@ -6,7 +6,7 @@ def call(def fileName, Closure stage) {
     dynamicStages.each { s -> 
         stageName = "$s"
         // terraform.stage(stageName)
-        stage(stageName)
+        c(stageName)
     }
 }
 
