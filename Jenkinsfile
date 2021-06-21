@@ -34,20 +34,15 @@ pipeline {
         
         stage("Setup") {
             parallel {
-                // stage("Setup terraform") {
-                //     steps {
-                //         script {
-                //             terraform.download("1.0.0")
-                //         }
-                //     }
-                // }
-                stage("Setup AWS") {
-                   
+                stage("Setup terraform") {
+                    steps {
                         script {
-                            aws.getCredentials()
-
+                            terraform.download("1.0.0")
                         }
-                    
+                    }
+                }
+                node {
+                    aws.getCredentials()                  
                 }
             }
         }
