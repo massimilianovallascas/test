@@ -8,15 +8,7 @@ def call(def fileName) {
         // aws.getCredentials()
         stage(stageName) {
             script {
-                milestone()
-                terraform.init()
-                milestone()
-                terraform.plan()
-                milestone()
-                terraform.apply()
-                milestone()
-                terraform.clean()
-                milestone()
+                terragorm.stages()
             }
         }
     }

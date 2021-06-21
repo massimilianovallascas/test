@@ -8,6 +8,26 @@ def download(String version) {
     """
 }
 
+def folderHasTerraformFile(filePath) {
+    return fileExists filePath
+}
+
+def stages() {
+    if (folderHasTerraformFile()) {
+        milestone()
+        folderHasTerraformFile('*.tf')
+        milestone()
+        init()
+        milestone()
+        plan()
+        milestone()
+        apply()
+        milestone()
+        clean()
+        milestone()
+    }
+}
+
 def init() {
     sh """
         ./terraform init -no-color
