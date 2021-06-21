@@ -9,23 +9,30 @@ def download(String version) {
 }
 
 def stage(stageName) {
-    def f = '*.tf'
+    def filePattern = '*.tf'
     // aws.getCredentials()
     stage(stageName) {
-        if (utils.folderHasFile(f)) {
+        def fe = fileExists stageName
+        if (fe) {
             script {
-                milestone()
-                init()
-                milestone()
-                plan()
-                milestone()
-                apply()
-                milestone()
-                clean()
-                milestone()
+                sh "cd ${stageName}"
             }
-        } else {
-            echo error("File not found (${f}), execution interrupted.")
+            def fpe = fileExists filePattern
+            if (fpe) {
+                script {
+                    milestone()
+                    init()
+                    milestone()
+                    plan()
+                    milestone()
+                    apply()
+                    milestone()
+                    clean()
+                    milestone()
+                }
+            } else {
+                echo error("File not found (${f}), execution interrupted.")
+            }
         }
     }
 }
