@@ -17,9 +17,7 @@ def stage(stageName) {
         if (fe) {
             dir(stageName) {
                 // def fpe = fileExists filePattern    
-                def proc = "find . -name '${filePattern}' | wc -l | xargs".execute()
-                def fpe = new StringBuffer()
-                proc.waitprocessOutput(fpe)
+                def fpe = "find . -name '${filePattern}' | wc -l | xargs".execute().text
                 println fpe
                 if (fpe > 0) {
                     script {
