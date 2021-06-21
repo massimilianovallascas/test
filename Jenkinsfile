@@ -42,7 +42,9 @@ pipeline {
                     }
                 }
                 stage("Get AWS credentials") {
-                    getCredentials()
+                    steps {
+                        getCredentials()
+                    }
                 }
             }
         }
