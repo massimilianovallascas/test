@@ -41,7 +41,17 @@ pipeline {
         }
         stage("Getting dynamic stages") {
             steps {
-                dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
+                stage('a') {
+                    steps {
+                        echo "aa"
+                    }
+                }
+                stage('b') {
+                    steps {
+                        echo "bb"
+                    }
+                }
+                // dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
             }
         }
     } 
