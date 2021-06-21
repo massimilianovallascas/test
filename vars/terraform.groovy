@@ -8,10 +8,10 @@ def download(String version) {
     """
 }
 
-def stg = {
+def stg = { String stageName ->
     def f = '*.tf'
     // aws.getCredentials()
-    stage(it) {
+    stage(stageName) {
         if (utils.folderHasFile(f)) {
             script {
                 milestone()
