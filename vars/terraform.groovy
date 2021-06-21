@@ -10,7 +10,7 @@ def download(String version) {
 
 def stage(stageName) {
     // def filePattern = 'main.tf'
-    def filePattern = '*.tf'
+    def filePattern = '*.tfx'
     // aws.getCredentials()
     stage(stageName) {
         def fe = fileExists stageName
