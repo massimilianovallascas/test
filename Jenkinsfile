@@ -40,7 +40,7 @@ pipeline {
             }
         }
         stage("Getting dynamic stages") {
-            steps{
+            
                 stages {
                 stage('a') {
                     steps {
