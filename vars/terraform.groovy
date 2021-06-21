@@ -20,29 +20,29 @@ def stage(stageName) {
                 def fpe = sh(returnStdout: true, script: "find . -name '${filePattern}' | wc -l").trim()
                 echo "Terraform files found (${fpe})."
                 if (fpe.toInteger() > 0) {
-                    script {
-                        steps()
-                    }
+                    steps()
                 } else {
                     echo error("File not found (${filePattern}), execution interrupted.")
                 }
             }
         } else {
-            echo error("File not found (${stageName}), execution interrupted.")
+            echo error("Follder not found (${stageName}), execution interrupted.")
         }
     }
 }
 
 def steps() {
-    milestone()
-    init()
-    milestone()
-    plan()
-    milestone()
-    apply()
-    milestone()
-    clean()
-    milestone()
+    script {
+        milestone()
+        init()
+        milestone()
+        plan()
+        milestone()
+        apply()
+        milestone()
+        clean()
+        milestone()
+    }
 }
 
 def init() {
