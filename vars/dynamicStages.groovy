@@ -14,8 +14,9 @@ def fromTxtFile(String fileName, String fileType, Closure c) {
 }
 
 def fromYmlFile(String fileName, Closure c) {
-    def dynamicStages = readFromYmlFile(fileName).order
-
+    def data = readFromYmlFile(fileName)
+    def dynamicStages = data.order
+    println data
     println dynamicStages
     echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
     
