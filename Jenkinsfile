@@ -37,12 +37,11 @@ pipeline {
         }
         
         stage("Setup") {
-            stage("Setup terraform") {
-                steps {
-                    script {
-                        terraform.download("1.0.0")
-                    }
+            steps {
+                script {
+                    terraform.download("1.0.0")
                 }
+
             }
         }
         stage("Getting dynamic stages") {
