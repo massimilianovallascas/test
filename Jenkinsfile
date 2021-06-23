@@ -59,7 +59,7 @@ pipeline {
         //     // }
             steps {
                 script{
-                    asw.getCredentials(params.TERRAFORM_DEPLOYMENT_CONFIG_FILE)
+                    aws.getCredentials(params.TERRAFORM_DEPLOYMENT_CONFIG_FILE)
                     dynamicStages.fromYmlFile(params.TERRAFORM_DEPLOYMENT_CONFIG_FILE, terraform.&stage)           
                 }     
             }
