@@ -37,24 +37,15 @@ pipeline {
         }
         
         stage("Setup") {
-            parallel {
-                stage("Setup terraform") {
-                    steps {
-                        script {
-                            terraform.download("1.0.0")
-                        }
-                    }
-                }
-                stage("Setup AWS") {
-                    steps {
-                        script {
-                             aws.getCredentials()     
-                        }
+            stage("Setup terraform") {
+                steps {
+                    script {
+                        terraform.download("1.0.0")
                     }
                 }
             }
         }
-        // stage("Getting dynamic stages") {
+        stage("Getting dynamic stages") {
         //     // stages {
         //     //     stage('a') {
         //     //         steps {
@@ -67,12 +58,12 @@ pipeline {
         //     //         }
         //     //     }
         //     // }
-        //     steps {
+            steps {
 
-        //             dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
+                    dynamicStages(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)
                 
-        //     }
-        // }
+            }
+        }
 
         //}
     } 
