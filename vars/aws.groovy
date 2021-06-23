@@ -20,7 +20,7 @@ def getCredentials(String fileName) {
         //     sh 'make check'
         // }
     def data = fs.readFromYmlFile(fileName)
-    def environmentId = data.environment.${env.BRANCH_NAME}
+    def environmentId = data.environment."${env.BRANCH_NAME}"
     println(environmentId)
 }
 
