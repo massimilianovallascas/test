@@ -25,7 +25,7 @@ def stage(stageName) {
                 }
             }
         } else {
-            echo error("Follder not found (${stageName}), execution interrupted.")
+            echo error("Folder not found (${stageName}), execution interrupted.")
         }
     }
 }

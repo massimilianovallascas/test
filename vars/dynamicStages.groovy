@@ -22,8 +22,8 @@ def readFromFile(String fileName, String fileType = "yml") {
         }
 
         if (fileType == "yml" || fileType == "yaml") {
-            data = readYaml(file: fileName)
-            data = data.order
+            def yml = readYaml(file: fileName)
+            data = yml.order
         }
     }
 
