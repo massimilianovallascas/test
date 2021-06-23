@@ -1,4 +1,4 @@
-def getCredentials() {
+def getCredentials(String fileName) {
         // stage('Get AWS Credentials') {
         //     // agent {
         //     //     docker {
