@@ -1,10 +1,10 @@
-- order:
+order:
     - one
     - two
     - three
     - four
 
-- environment: 
+environment: 
     - dev: 1234
     - sit: 4567
     - uat: 1357
