@@ -5,7 +5,7 @@ def fromList(List stages, Closure c) {
     }
 }
 
-def fromFile(String fileName, String fileType Closure c) {
+def fromFile(String fileName, String fileType, Closure c) {
     def dynamicStages = readFromFile(fileName, fileType)
 
     echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
