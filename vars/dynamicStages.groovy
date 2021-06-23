@@ -1,4 +1,4 @@
-def fromList(List stages, Closure c) {
+def fromList(List dynamicStages, Closure c) {
     dynamicStages.each { s -> 
         stageName = "$s"
         c(stageName)
