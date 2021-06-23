@@ -17,11 +17,11 @@ def readFromFile(String fileName, String fileType = "yml") {
     def data = []
 
     if (fileExists(fileName)) {
-        if (fileType.toLowerCase() == "txt") {
+        if (fileType == "txt") {
             data = readFile(fileName).readLines()
         }
 
-        if (fileType.toLowerCase() == "yml" || fileType.toLowerCase() == "yaml") {
+        if (fileType == "yml" || fileType == "yaml") {
             data = readYaml(file: fileName)
             data = data.order
         }
