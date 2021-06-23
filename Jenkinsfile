@@ -59,7 +59,7 @@ pipeline {
         //     // }
             steps {
                 script{
-                    dynamicStages.fromFile(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, "yml", terraform.&stage)           
+                    dynamicStages.fromYmlFile(params.TERRAFORM_DEPLOYMENT_ORDER_FILE, terraform.&stage)           
                 }     
             }
         }

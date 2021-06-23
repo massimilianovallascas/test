@@ -5,26 +5,38 @@ def fromList(List dynamicStages, Closure c) {
     }
 }
 
-def fromFile(String fileName, String fileType, Closure c) {
-    def dynamicStages = readFromFile(fileName, fileType)
+def fromTxtFile(String fileName, String fileType, Closure c) {
+    def dynamicStages = readFromTxtFile(fileName)
 
     echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
     
     fromList(dynamicStages, c)
 }
 
-def readFromFile(String fileName, String fileType = "yml") {
+def fromYmlFile(String fileName, Closure c) {
+    def dynamicStages = readFromYmlFile(fileName).order
+
+    println dynamicStages
+    echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
+    
+    fromList(dynamicStages, c)
+}
+
+def readFromTxtFile(String fileName) {
     def data = []
 
     if (fileExists(fileName)) {
-        if (fileType == "txt") {
-            data = readFile(fileName).readLines()
-        }
+        data = readFile(fileName).readLines()
+    }
 
-        if (fileType == "yml" || fileType == "yaml") {
-            def yml = readYaml(file: fileName)
-            data = yml.order
-        }
+    return data
+}
+
+def readFromYmlFile(String fileName) {
+    def data = []
+
+    if (fileExists(fileName)) {
+        def yml = readYaml(file: fileName)
     }
 
     return data
