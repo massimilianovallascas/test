@@ -37,7 +37,7 @@ def readFromYmlFile(String fileName) {
     def data = []
 
     if (fileExists(fileName)) {
-        def yml = readYaml(file: fileName)
+        data = readYaml(file: fileName)
     }
 
     return data
