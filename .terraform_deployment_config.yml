@@ -5,9 +5,9 @@ order:
     - four
 
 environment: 
-    - dev: 1234
-    - sit: 4567
-    - uat: 1357
-    - preprod: 3987
-    - prod: 1010
-    - master: 11111
+    dev: 1234
+    sit: 4567
+    uat: 1357
+    preprod: 3987
+    prod: 1010
+    master: 11111
