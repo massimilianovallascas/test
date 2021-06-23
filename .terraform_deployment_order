@@ -1,4 +1,12 @@
-one
-two
-three
-four
+- order:
+    - one
+    - two
+    - three
+    - four
+
+- environment: 
+    - dev: 1234
+    - sit: 4567
+    - uat: 1357
+    - preprod: 3987
+    - prod: 1010

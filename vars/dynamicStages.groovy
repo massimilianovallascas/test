@@ -1,20 +1,30 @@
-def call(def fileName, Closure c) {
-    def dynamicStages = readOrderFromFile(fileName)
-
-    echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
-    
+def fromList(List stages, Closure c) {
     dynamicStages.each { s -> 
         stageName = "$s"
-        // terraform.stage(stageName)
         c(stageName)
     }
 }
 
-def readOrderFromFile(def fileName) {
+def fromFile(String fileName, String fileType Closure c) {
+    def dynamicStages = readFromFile(fileName, fileType)
+
+    echo "[INFO] Config file $fileName contains " + dynamicStages.size() + " steps"
+    
+    fromList(dynamicStages, c)
+}
+
+def readFromFile(String fileName, String fileType = "yml") {
     def data = []
+
     if (fileExists(fileName)) {
-        data = readFile(fileName).readLines()
-        // def data = readYaml(file: fileName)
+        if (fileType.toLowerCase() == "txt") {
+            data = readFile(fileName).readLines()
+        }
+
+        if (fileType.toLowerCase() == "yml" || fileType.toLowerCase() == "yaml") {
+            data = readYaml(file: fileName)
+            data = data.order
+        }
     }
 
     return data
