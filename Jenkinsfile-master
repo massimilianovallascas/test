@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     def b = build 'test_slave/master'
-                    println(b.id)
+                    def env.ADFS_ID = b.id
                 }
                 
             }
@@ -32,7 +32,7 @@ pipeline {
 
         stage("Read variables") {
             steps {
-                copyArtifacts filter: 'aws.json', fingerprintArtifacts: true, projectName: 'test_slave/master', selector: specific('444')
+                copyArtifacts filter: 'aws.json', fingerprintArtifacts: true, projectName: 'test_slave/master', selector: specific(${ADFS_ID})
             }
         }
     }
