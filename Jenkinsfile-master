@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     def b = build 'test_slave/master'
-                    println(b)
+                    println(b.id)
                 }
                 
             }
