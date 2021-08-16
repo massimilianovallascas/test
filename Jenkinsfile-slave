@@ -24,7 +24,7 @@ pipeline {
         stage("Create variables") {
             steps {
                 script {
-                    sh 'echo "MASSI=TESTVAR" > aws.json'
+                    sh 'echo "{\"MASSI\"=\"TESTVAR\"}" > aws.json'
                 }
             }
         }
