@@ -28,6 +28,7 @@ pipeline {
 
         stage("Read variables") {
             steps {
+                echo "test"
             }
         }
     }
