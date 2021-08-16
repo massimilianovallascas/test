@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     def b = build 'test_slave/master'
-                    def env.ADFS_ID = b.id
+                    env.ADFS_ID = b.id
                 }
                 
             }
