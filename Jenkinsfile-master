@@ -28,7 +28,7 @@ pipeline {
 
         stage("Read variables") {
             steps {
-                copyArtifacts filter: 'aws.json', fingerprintArtifacts: true, projectName: 'test_slave/master', selector: upstream()
+                copyArtifacts filter: 'aws.json', fingerprintArtifacts: true, projectName: 'test_slave/master', selector: lastSuccessful()
             }
         }
     }
