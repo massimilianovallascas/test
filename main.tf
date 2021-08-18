@@ -1,3 +1,3 @@
 module "test" {
-    source = "git::https://github.com/massimilianovallascas/terraform_modules.git"
+    source = "git::https://github.com/massimilianovallascas/terraform_modules.git//terraform-aws-ami-id-search"
 }
