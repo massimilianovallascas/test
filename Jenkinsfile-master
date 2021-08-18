@@ -29,6 +29,15 @@ pipeline {
             }
         }
 
+        stage("Git credentials") {
+            steps {
+                script {
+                    sh '''
+                    git config --local url."https://oauth:${GIT_TOKEN}@github.com"insteadOf https://github.com
+                    '''
+                }
+            }
+        }
         stage("Terraform run") {
             steps {
                 script {
