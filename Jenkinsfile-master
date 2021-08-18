@@ -32,11 +32,7 @@ pipeline {
         stage("Git credentials") {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
-                        sh '''
-                            git config --local url."https://${GIT_TOKEN}@github.com".insteadOf https://github.com
-                        '''
-                    }
+                    
                     // withCredentials([usernamePassword(credentialsId: 'gitcreds', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
                     //     sh "git config --global credential.helper '!f() { sleep 1; echo \"username=${env.GIT_USER}\\npassword=${env.GIT_PASS}\"; }; f'"
                     //     // sh 'terraform init -input=false -upgrade'
@@ -49,7 +45,16 @@ pipeline {
             steps {
                 script {
                     milestone()
-                    terraform.init()
+                    withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
+                        sh '''
+                            git config --global url."https://${GIT_TOKEN}@github.com/massimilianovallascas".insteadOf https://github.com/massimilianovallascas
+                        '''
+                        terraform.init()
+                        // sh '''
+                        //     git config --global --remove-section url."https://${GIT_TOKEN}@github.com"/massimilianovallascas
+                        // '''
+                    }
+                    
                     milestone()
                     terraform.plan()
                     milestone()
