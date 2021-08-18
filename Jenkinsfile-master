@@ -38,7 +38,7 @@ pipeline {
                     //     '''
                     // }
                     withCredentials([usernamePassword(credentialsId: 'gitcreds', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-                        sh "git config --local credential.helper '!f() { sleep 1; echo \"username=${env.GIT_USER}\\npassword=${env.GIT_PASS}\"; }; f'"
+                        sh "git config --global credential.helper '!f() { sleep 1; echo \"username=${env.GIT_USER}\\npassword=${env.GIT_PASS}\"; }; f'"
                         // sh 'terraform init -input=false -upgrade'
                         // sh 'git config --local --remove-section credential'
                     }
