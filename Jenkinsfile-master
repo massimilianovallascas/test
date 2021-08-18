@@ -32,16 +32,16 @@ pipeline {
         stage("Git credentials") {
             steps {
                 script {
-                    // withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
-                    //     sh '''
-                    //         git config --global url."https://oauth2:${GIT_TOKEN}@github.com".insteadOf https://github.com
-                    //     '''
-                    // }
-                    withCredentials([usernamePassword(credentialsId: 'gitcreds', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-                        sh "git config --global credential.helper '!f() { sleep 1; echo \"username=${env.GIT_USER}\\npassword=${env.GIT_PASS}\"; }; f'"
-                        // sh 'terraform init -input=false -upgrade'
-                        // sh 'git config --local --remove-section credential'
+                    withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
+                        sh '''
+                            git config --global url."https://oauth2:${GIT_TOKEN}@github.com".insteadOf https://github.com
+                        '''
                     }
+                    // withCredentials([usernamePassword(credentialsId: 'gitcreds', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
+                    //     sh "git config --global credential.helper '!f() { sleep 1; echo \"username=${env.GIT_USER}\\npassword=${env.GIT_PASS}\"; }; f'"
+                    //     // sh 'terraform init -input=false -upgrade'
+                    //     // sh 'git config --local --remove-section credential'
+                    // }
                 }
             }
         }
