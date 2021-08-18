@@ -34,7 +34,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
                         sh '''
-                            git config --global url."https://oauth2:${GIT_TOKEN}@github.com".insteadOf https://github.com
+                            git config --global url."https://${GIT_TOKEN}@github.com".insteadOf https://github.com
                         '''
                     }
                     // withCredentials([usernamePassword(credentialsId: 'gitcreds', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
@@ -71,3 +71,5 @@ pipeline {
         }
     }
 }
+
+https://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@github.com/massimilianovallascas/terraform_modules.git/
