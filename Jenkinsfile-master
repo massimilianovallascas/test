@@ -49,7 +49,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
                     sh '''
-                        git_credentials.sh
+                        ./git_credentials.sh
                     '''
                     
                     // sh '''
