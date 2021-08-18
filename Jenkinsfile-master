@@ -48,10 +48,16 @@ pipeline {
         stage("Terraform run") {
             steps {
                 withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
+                    // sh '''
+                    //     ./git_credentials.sh
+                    // '''
                     sh '''
-                        ./git_credentials.sh
+                        gitCredentials=$(git config --list | grep "url.https://${GIT_TOKEN}@${GIT_PREFIX}.insteadOf=https://${GIT_PREFIX}" | wc -l)
+
+                        if [ ${gitCredentials} -eq 0 ]; then 
+                            git config --global url."https://${GIT_TOKEN}@${GIT_PREFIX}".insteadOf https://${GIT_PREFIX}
+                        fi
                     '''
-                    
                     // sh '''
                     //     git config --global --remove-section url."https://${GIT_TOKEN}@github.com"/massimilianovallascas
                     // '''
