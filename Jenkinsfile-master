@@ -19,6 +19,10 @@ pipeline {
         string(name: 'HSBC_PASS', defaultValue: '', description: 'Your personal password')
         string(name: 'CR', defaultValue: '', description: 'Change request number (required for production)')
     }
+
+    environment {
+        GIT_PREFIX = "github.com/massimilianovallascas/terraform-"
+    }
     stages {
         stage("Terraform download") {
             steps {
@@ -47,7 +51,8 @@ pipeline {
                     milestone()
                     withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
                         sh '''
-                            git config --global url."https://${GIT_TOKEN}@github.com/massimilianovallascas".insteadOf https://github.com/massimilianovallascas
+                            gitCredentials=$(git config --list | grep "url.https://${GIT_TOKEN}@${GIT_PREFIX}.insteadOf=https://${GIT_PREFIX}" | wc -l)
+                            if [[ "gitCredentials" == "0" ]]; then git config --global url."https://${GIT_TOKEN}@${GIT_PREFIX}".insteadOf https://${GIT_PREFIX}; fi
                         '''
                         terraform.init()
                         // sh '''
