@@ -1,3 +1,3 @@
 module "test" {
-    source = "git::https://github.com/massimilianovallascas/website_ecs_c2c.git"
+    source = "git::https://github.com/massimilianovallascas/terraform_modules.git"
 }
