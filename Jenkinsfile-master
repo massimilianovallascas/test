@@ -20,20 +20,33 @@ pipeline {
         string(name: 'CR', defaultValue: '', description: 'Change request number (required for production)')
     }
     stages {
-        stage("Call external") {
+        stage("Terraform download") {
             steps {
                 script {
-                    def b = build 'test_slave/master'
-                    env.ADFS_ID = b.id
+                    terraform.download('1.0.0')
                 }
                 
             }
         }
 
-        stage("Read variables") {
+        stage("Terraform run") {
             steps {
-                copyArtifacts filter: 'aws.json', fingerprintArtifacts: true, projectName: 'test_slave/master', selector: specific("${ADFS_ID}")
+                script {
+                    milestone()
+                    terraform.init()
+                    milestone()
+                    terraform.plan()
+                    milestone()
+                    terraform.apply()
+                    milestone()
+                    terraform.clean()
+                    milestone() 
+                }
             }
         }
+
+        // stage("Env") {
+        
+        // }
     }
 }
