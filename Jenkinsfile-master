@@ -34,7 +34,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
                         sh '''
-                            git config --global url."https://${GIT_TOKEN}@github.com".insteadOf https://github.com
+                            git config --local url."https://${GIT_TOKEN}@github.com".insteadOf https://github.com
                         '''
                     }
                     // withCredentials([usernamePassword(credentialsId: 'gitcreds', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
