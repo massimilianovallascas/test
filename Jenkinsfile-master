@@ -32,7 +32,8 @@ pipeline {
                     AD_PASS="${params.AD_PASS}"
                 }
                 sh '''
-                    echo "B ${params.AD_PASS}"
+                    echo "B ${AD_PASS}
+                    echo "C ${params.AD_PASS}"
                 '''
                 // script {
                 //     terraform.download('1.0.0')
