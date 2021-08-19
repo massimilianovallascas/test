@@ -28,6 +28,9 @@ pipeline {
         stage("Terraform download") {
             steps {
                 echo "A ${params.AD_PASS}"
+                script {
+                    AD_PASS="${params.AD_PASS}"
+                }
                 sh '''
                     echo "B ${params.AD_PASS}"
                 '''
