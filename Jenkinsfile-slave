@@ -26,7 +26,8 @@ pipeline {
         stage("Create variables") {
             steps {
                 script {
-                    sh 'echo "${params.AD_PASS}" > aws.json'
+                    env.AD_PASS='${params.AD_PASS}'
+                    sh 'echo "${AD_PASS}" > aws.json'
                 }
             }
         }
