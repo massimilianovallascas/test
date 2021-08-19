@@ -32,7 +32,7 @@ pipeline {
                     AD_PASS="${params.AD_PASS}"
                 }
                 sh '''
-                    echo "B ${AD_PASS}
+                    echo "B ${AD_PASS}"
                     echo "C ${params.AD_PASS}"
                 '''
                 // script {
