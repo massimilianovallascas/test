@@ -18,19 +18,16 @@ pipeline {
         string(name: 'VERSION', defaultValue: '', description: 'e.g. 1.3.8 (required for production)')
         string(name: 'HSBC_PASS', defaultValue: '', description: 'Your personal password')
         string(name: 'CR', defaultValue: '', description: 'Change request number (required for production)')
+        password(name: 'AD_PASS', defaultValue: '')
+
     }
 
     stages {
         stage("Create variables") {
             steps {
                 script {
-                    sh 'echo "{'MASSI'='TESTVAR'}" > aws.json'
+                    sh 'echo "${params.AD_PASS}" > aws.json'
                 }
-            }
-        }
-        stage("Archive") {
-            steps {
-                archive 'aws.json'
             }
         }
     }

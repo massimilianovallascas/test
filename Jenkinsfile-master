@@ -14,10 +14,11 @@ pipeline {
     }
 
     parameters {
-        string(name: 'TERRAFORM_DEPLOYMENT_CONFIG_FILE', defaultValue: '.terraform_deployment_config.yml', description: '')
+        string(name: 'Pass', defaultValue: '.terraform_deployment_config.yml', description: '')
         string(name: 'VERSION', defaultValue: '', description: 'e.g. 1.3.8 (required for production)')
         string(name: 'HSBC_PASS', defaultValue: '', description: 'Your personal password')
         string(name: 'CR', defaultValue: '', description: 'Change request number (required for production)')
+        password(name: 'AD_PASS', defaultValue: '')
     }
 
     environment {
@@ -26,10 +27,10 @@ pipeline {
     stages {
         stage("Terraform download") {
             steps {
-                script {
-                    terraform.download('1.0.0')
-                }
-                
+                // script {
+                //     terraform.download('1.0.0')
+                // }
+                build 
             }
         }
 
@@ -45,36 +46,36 @@ pipeline {
         //         }
         //     }
         // }
-        stage("Terraform run") {
-            steps {
-                withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
-                    // sh '''
-                    //     ./git_credentials.sh
-                    // '''
-                    sh '''
-                        gitCredentials=$(git config --list | grep "url.https://${GIT_TOKEN}@${GIT_PREFIX}.insteadOf=https://${GIT_PREFIX}" | wc -l)
+        // stage("Terraform run") {
+        //     steps {
+        //         withCredentials([string(credentialsId: 'git_token', variable: 'GIT_TOKEN')]) {
+        //             // sh '''
+        //             //     ./git_credentials.sh
+        //             // '''
+        //             sh '''
+        //                 gitCredentials=$(git config --list | grep "url.https://${GIT_TOKEN}@${GIT_PREFIX}.insteadOf=https://${GIT_PREFIX}" | wc -l)
 
-                        if [ ${gitCredentials} -eq 0 ]; then 
-                            git config --global url."https://${GIT_TOKEN}@${GIT_PREFIX}".insteadOf https://${GIT_PREFIX}
-                        fi
-                    '''
-                    // sh '''
-                    //     git config --global --remove-section url."https://${GIT_TOKEN}@github.com"/massimilianovallascas
-                    // '''
-                }
-                script {
-                    milestone()
-                    terraform.init()
-                    milestone()
-                    terraform.plan()
-                    milestone()
-                    terraform.apply()
-                    milestone()
-                    terraform.clean()
-                    milestone() 
-                }
-            }
-        }
+        //                 if [ ${gitCredentials} -eq 0 ]; then 
+        //                     git config --global url."https://${GIT_TOKEN}@${GIT_PREFIX}".insteadOf https://${GIT_PREFIX}
+        //                 fi
+        //             '''
+        //             // sh '''
+        //             //     git config --global --remove-section url."https://${GIT_TOKEN}@github.com"/massimilianovallascas
+        //             // '''
+        //         }
+        //         script {
+        //             milestone()
+        //             terraform.init()
+        //             milestone()
+        //             terraform.plan()
+        //             milestone()
+        //             terraform.apply()
+        //             milestone()
+        //             terraform.clean()
+        //             milestone() 
+        //         }
+        //     }
+        // }
 
         // stage("Env") {
         
@@ -82,7 +83,7 @@ pipeline {
     }
     // post {
     //     always {
-    //         cleanWs deleteDirs: true, disableDeferredWipeout: true
+    //         cleanWs deleteDirs: true
     //     }
     // }
 }
