@@ -27,7 +27,9 @@ pipeline {
     stages {
         stage("Terraform download") {
             steps {
-                env.AD_PASS='${params.AD_PASS}'
+                sh '''
+                env.AD_PASS="${params.AD_PASS}"
+                '''
                 // script {
                 //     terraform.download('1.0.0')
                 // }
