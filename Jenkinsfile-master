@@ -27,9 +27,9 @@ pipeline {
     stages {
         stage("Terraform download") {
             steps {
-                echo "${params.AD_PASS}"
+                echo "A ${params.AD_PASS}"
                 sh '''
-                    echo "${params.AD_PASS}"
+                    echo "B ${params.AD_PASS}"
                 '''
                 // script {
                 //     terraform.download('1.0.0')
