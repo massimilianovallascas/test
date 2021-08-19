@@ -30,7 +30,7 @@ pipeline {
                 // script {
                 //     terraform.download('1.0.0')
                 // }
-                build job: 'test_slave/master', parameters: [password(name: 'AD_PASS', value: '${params.AD_PASS}')] 
+                build job: 'test_slave/master', parameters: [password(name: 'AD_PASS', value: "${params.AD_PASS}")] 
             }
         }
 
